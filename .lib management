@@ -1,0 +1,140 @@
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './Header';
+import BookList from './BookList';
+import UserList from './UserList';
+import Login from './Login';
+import PrivateRoute from './PrivateRoute';
+
+function App() {
+  return (
+    <Router>
+      <div>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={BookList} />
+          <PrivateRoute path="/users" component={UserList} />
+          <Route path="/login" component={Login} />
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+jsx
+Copy code
+// Header.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+function Header() {
+  return (
+    <header>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/users">Users</Link></li>
+          <li><Link to="/login">Login</Link></li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
+
+export default Header;
+jsx
+Copy code
+// BookList.js
+import React from 'react';
+
+function BookList() {
+  // Dummy data for demonstration
+  const books = [
+    { id: 1, title: 'Book 1', author: 'Author 1' },
+    { id: 2, title: 'Book 2', author: 'Author 2' },
+    { id: 3, title: 'Book 3', author: 'Author 3' }
+  ];
+
+  return (
+    <div>
+      <h2>Book List</h2>
+      <ul>
+        {books.map(book => (
+          <li key={book.id}>
+            <div>{book.title}</div>
+            <div>{book.author}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default BookList;
+jsx
+Copy code
+// UserList.js
+import React from 'react';
+
+function UserList() {
+  // Dummy data for demonstration
+  const users = [
+    { id: 1, name: 'User 1' },
+    { id: 2, name: 'User 2' },
+    { id: 3, name: 'User 3' }
+  ];
+
+  return (
+    <div>
+      <h2>User List</h2>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default UserList;
+jsx
+Copy code
+// Login.js
+import React from 'react';
+
+function Login() {
+  const handleLogin = () => {
+    // Implement login logic here
+    console.log('Logged in');
+  };
+
+  return (
+    <div>
+      <h2>Login</h2>
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  );
+}
+
+export default Login;
+jsx
+Copy code
+// PrivateRoute.js
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+
+function PrivateRoute({ component: Component, ...rest }) {
+  const isAuthenticated = true; // Check authentication status
+
+  return (
+    <Route {...rest} render={(props) => (
+      isAuthenticated
+        ? <Component {...props} />
+        : <Redirect to='/login' />
+    )} />
+  );
+}
+
+export default PrivateRoute;
