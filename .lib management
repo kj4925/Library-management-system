@@ -24,7 +24,6 @@ function App() {
 
 export default App;
 jsx
-Copy code
 // Header.js
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -45,7 +44,6 @@ function Header() {
 
 export default Header;
 jsx
-Copy code
 // BookList.js
 import React from 'react';
 
@@ -74,7 +72,6 @@ function BookList() {
 
 export default BookList;
 jsx
-Copy code
 // UserList.js
 import React from 'react';
 
@@ -100,7 +97,6 @@ function UserList() {
 
 export default UserList;
 jsx
-Copy code
 // Login.js
 import React from 'react';
 
@@ -120,7 +116,6 @@ function Login() {
 
 export default Login;
 jsx
-Copy code
 // PrivateRoute.js
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
